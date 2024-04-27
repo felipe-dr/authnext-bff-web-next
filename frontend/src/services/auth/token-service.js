@@ -1,4 +1,5 @@
 import nookies from "nookies";
+
 const ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY";
 
 const ONE_SECOND = 1;
@@ -18,6 +19,7 @@ export const tokenService = {
   },
   get(ctx = null) {
     const cookies = nookies.get(ctx);
+
     return cookies[ACCESS_TOKEN_KEY] || "";
     // return globalThis?.localStorage?.getItem(ACCESS_TOKEN_KEY);
     // return sessionStorage.getItem(ACCESS_TOKEN_KEY);

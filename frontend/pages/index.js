@@ -6,8 +6,8 @@ import { authService } from "../src/services/auth/auth-service";
 export default function HomeScreen() {
   const router = useRouter();
   const [values, setValues] = React.useState({
-    usuario: "omariosouto",
-    senha: "safepassword",
+    user: "omariosouto",
+    password: "safepassword",
   });
 
   function handleChange(event) {
@@ -31,8 +31,8 @@ export default function HomeScreen() {
           event.preventDefault();
           authService
             .login({
-              username: values.usuario,
-              password: values.senha,
+              username: values.user,
+              password: values.password,
             })
             .then(() => {
               // router.push('/auth-page-static');
@@ -46,15 +46,15 @@ export default function HomeScreen() {
       >
         <input
           placeholder="Usuário"
-          name="usuario"
-          value={values.usuario}
+          name="user"
+          value={values.user}
           onChange={handleChange}
         />
         <input
           placeholder="Senha"
-          name="senha"
+          name="password"
           type="password"
-          value={values.senha}
+          value={values.password}
           onChange={handleChange}
         />
         {/* <pre>
