@@ -4,22 +4,24 @@ import nookies from "nookies";
 import { tokenService } from "../../services/auth/token-service";
 
 // Ports & Adapters
-export async function HttpClient(fetchUrl, fetchOptions) {
+export async function HttpClient(fetchUrl, fetchOptions = {}) {
+  const defaultHeaders = fetchOptions.headers || {};
   const options = {
     ...fetchOptions,
     headers: {
       "Content-Type": "application/json",
-      ...fetchOptions.headers,
+      ...defaultHeaders,
     },
     body: fetchOptions.body ? JSON.stringify(fetchOptions.body) : null,
   };
+
   return fetch(fetchUrl, options)
-    .then(async (respostaDoServidor) => {
+    .then(async (response) => {
       return {
-        ok: respostaDoServidor.ok,
-        status: respostaDoServidor.status,
-        statusText: respostaDoServidor.statusText,
-        body: await respostaDoServidor.json(),
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: await response.json(),
       };
     })
     .then(async (response) => {
